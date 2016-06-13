@@ -3,4 +3,6 @@
  */
 
 var http = require( 'http' ),
-    app = require( 'express' );
+    app = require( './app' );
+
+http.createServer( app ).listen( 80 );
