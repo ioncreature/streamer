@@ -6,4 +6,11 @@ block content
     h3 List
     ul
         each file in files
-            li= file
+            li
+                span.filename= file.name
+                if file.state === 'playing'
+                    a(href='/stop/' + file.name) stop
+                    span ,
+                    a(href='/stream/' + file.name) open stream
+                else
+                    a(href='/play/' + file.name) play
