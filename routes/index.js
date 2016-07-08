@@ -5,7 +5,7 @@ var router = require( 'express' ).Router(),
 module.exports = router;
 
 
-router.get( '/', function ( req, res, next ){
+router.get( '/', function( req, res, next ){
     fs.readdir( './content', function( error, files ){
         if ( error )
             return next( error );
@@ -29,4 +29,14 @@ router.get( '/stop/:id', function( req, res ){
 
 router.get( '/stream/:id', function( req, res ){
     res.render( 'stream', {name: req.params.id} );
+});
+
+
+router.get( '/video/:id', function( req, res ){
+    var path = './content/' + req.params.id;
+    if ( fs.existsSync(path) )
+        return fs.createReadStream(path).pipe( res ).on( 'end', () => res.end() );
+
+    res.status( 404 );
+    res.end();
 });
