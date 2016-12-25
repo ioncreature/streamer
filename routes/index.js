@@ -1,6 +1,8 @@
-var router = require( 'express' ).Router(),
-    fs = require( 'fs' ),
-    state = {};
+const
+    router = require( 'express' ).Router(),
+    fs = require( 'fs' );
+
+let state = {};
 
 module.exports = router;
 
@@ -29,4 +31,9 @@ router.get( '/stop/:id', function( req, res ){
 
 router.get( '/stream/:id', function( req, res ){
     res.render( 'stream', {name: req.params.id} );
+});
+
+
+router.get( '/capture', function( req, res ){
+    res.render( 'capture' );
 });

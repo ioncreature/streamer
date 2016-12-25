@@ -2,7 +2,7 @@
  * HTTP MPEG-DASH stream with ffmpeg
  */
 
-var http = require( 'http' ),
+let http = require( 'http' ),
     app = require( './app' );
 
-http.createServer( app ).listen( 80 );
+http.createServer( app ).listen( 8080 );
