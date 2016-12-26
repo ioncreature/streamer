@@ -35,7 +35,7 @@ router.get( '/stream/:id', function( req, res ){
 
 
 router.get( '/video/:id', function( req, res ){
-    var path = './content/' + req.params.id;
+    let path = './content/' + req.params.id;
     if ( fs.existsSync(path) )
         return fs.createReadStream(path).pipe( res ).on( 'end', () => res.end() );
 

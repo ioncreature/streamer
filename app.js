@@ -4,7 +4,8 @@ const
     favicon = require( 'serve-favicon' ),
     logger = require( 'morgan' ),
     cookieParser = require( 'cookie-parser' ),
-    bodyParser = require( 'body-parser' );
+    bodyParser = require( 'body-parser' ),
+    NotFound = require('yahel').NotFound;
 
 let app = express();
 
@@ -24,12 +25,10 @@ app.use( express.static(path.join(__dirname, 'public')) );
 app.use( '/', require('./routes/index') );
 
 app.use( function( req, res, next ){
-    let err = new Error( 'Not Found' );
-    err.status = 404;
-    next( err );
+    next( NotFound() );
 });
 
-app.use( function ( err, req, res, next ){
+app.use( function( err, req, res, next ){
     res.status( err.status || 500 );
     res.render( 'error', {
         message: err.message,
